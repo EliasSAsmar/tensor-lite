@@ -15,8 +15,8 @@ This project is built from scratch to better understand the internals of deep le
 
 ## 🚀 Features (WIP)
 
-- [x] Custom `Tensor` class with basic arithmetic and shape manipulation  
-- [x] Broadcasting and slicing  
+- [ ] Custom `Tensor` class with basic arithmetic and shape manipulation  
+- [ ] Broadcasting and slicing  
 - [ ] Computation graph for autograd  
 - [ ] Backpropagation for gradient computation  
 - [ ] Neural network layers (Linear, ReLU, etc.)  
@@ -41,20 +41,7 @@ LightTensor/
 
 ---
 
-## 🧪 Build & Run
 
-Make sure you have CMake and a modern C++ compiler (C++17 or higher):
-
-```bash
-git clone https://github.com/yourusername/LightTensor.git
-cd LightTensor
-mkdir build && cd build
-cmake ..
-make
-./run_tests
-```
-
----
 
 ## 📦 Dependencies
 
