@@ -77,13 +77,7 @@ This project was created as a grind challenge to:
 ## ✍️ Author
 
 **Elias Sammy Asmar**  
-Computer Science @ MSU  
-[GitHub](https://github.com/yourusername) • [LinkedIn](https://linkedin.com/in/yourprofile)
 
----
 
-## 📜 License
 
-This project is licensed under the MIT License.
-```
 
