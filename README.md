@@ -1,8 +1,4 @@
-Absolutely — here's a clean, professional-looking `README.md` to kick things off. It’s minimal for now but sets the tone for a well-maintained repo. You can expand each section later as your framework grows:
 
----
-
-```markdown
 # 🧠 LightTensor
 
 A lightweight machine learning framework written in **modern C++**, featuring:
@@ -91,6 +87,3 @@ Computer Science @ MSU
 This project is licensed under the MIT License.
 ```
 
----
-
-Let me know when you're ready to update it with new milestones (like autograd or model training) and we’ll evolve it into a showcase project! 🔥
