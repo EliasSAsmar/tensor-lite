@@ -1,4 +1,4 @@
-```markdown
+
 # LightTensor
 
 LightTensor is a lightweight C++ tensor library built from scratch. It supports dynamic N-dimensional tensors, multi-index access, element-wise operations, and basic safety features. This forms the foundation for a minimal machine learning framework with future support for automatic differentiation and neural networks.
