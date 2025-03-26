@@ -1,70 +1,69 @@
+```markdown
+# LightTensor
 
-# 🧠 LightTensor
+LightTensor is a lightweight C++ tensor library built from scratch. It supports dynamic N-dimensional tensors, multi-index access, element-wise operations, and basic safety features. This forms the foundation for a minimal machine learning framework with future support for automatic differentiation and neural networks.
 
-A lightweight machine learning framework written in **modern C++**, featuring:
+## Features
 
 - N-dimensional tensor support
-- Automatic differentiation (autograd)
-- Neural network layers
-- Optimizers like SGD and Adam
-- Model training interface
+- Element-wise arithmetic: `+`, `-`, `*`, `/`
+- Multi-index access using shape-aware offset computation
+- Flat index access for internal operations
+- Shape and stride computation for memory layout
+- Bounds checking and shape validation
+- Full test coverage using GoogleTest
 
-This project is built from scratch to better understand the internals of deep learning frameworks like PyTorch and TensorFlow — with a strong focus on performance and modularity.
-
----
-
-## 🚀 Features (WIP)
-
-- [ ] Custom `Tensor` class with basic arithmetic and shape manipulation  
-- [ ] Broadcasting and slicing  
-- [ ] Computation graph for autograd  
-- [ ] Backpropagation for gradient computation  
-- [ ] Neural network layers (Linear, ReLU, etc.)  
-- [ ] Loss functions (MSE, Cross-Entropy)  
-- [ ] Optimizers (SGD, Adam)  
-- [ ] Dataset loaders and training loop  
-- [ ] CUDA acceleration (planned)  
-
----
-
-## 📁 Project Structure
+## Project Structure
 
 ```
-LightTensor/
-├── include/        # Header files (Tensor, Autograd, Layers, etc.)
-├── src/            # Source files
-├── tests/          # Unit tests for each module
-├── examples/       # Training examples (linear regression, MLP)
-├── CMakeLists.txt  # Build configuration
-└── README.md       # This file
+tensor-lite/
+├── include/           # Public header files
+│   └── tensor.h
+├── src/               # Tensor implementation
+│   └── tensor.cpp
+├── tests/             # GoogleTest-based unit tests
+│   └── test_tensor.cpp
+├── CMakeLists.txt     # Root CMake file
+└── README.md
 ```
 
----
+## Build and Run Tests
 
+Ensure CMake (3.15+) and a C++17-compatible compiler are installed.
 
+```bash
+mkdir build && cd build
+cmake ..
+make
+ctest --output-on-failure
+```
 
-## 📦 Dependencies
+## Example Usage
 
-- C++17 or higher
-- CMake 3.15+
-- (Optional) [Catch2](https://github.com/catchorg/Catch2) or GoogleTest for unit testing
-- (Planned) CUDA Toolkit for GPU support
+```cpp
+#include "tensor.h"
 
----
+int main() {
+    Tensor t(std::vector<size_t>{2, 3});
+    t.at({1, 2}) = 5.0f;
+    t.print_flat();     // [ 0.0 0.0 0.0 0.0 0.0 5.0 ]
+    t.print_shape();    // Shape: (2, 3)
+}
+```
 
-## 🧠 Motivation
+## Tests
 
-This project was created as a grind challenge to:
-- Improve low-level C++ skills (memory management, performance tuning)
-- Understand how real ML frameworks like PyTorch and TensorFlow work internally
-- Build something difficult and educational from scratch, no dependencies, no training wheels
+The project uses GoogleTest for unit testing. Tests cover:
 
----
+- Tensor construction (shape and value-based)
+- Indexing and stride logic
+- Arithmetic operations
+- Shape mismatch detection
+- Out-of-bounds access
 
-## ✍️ Author
+Run with:
 
-**Elias Sammy Asmar**  
-
-
-
+```bash
+./run_tests
+```
 
