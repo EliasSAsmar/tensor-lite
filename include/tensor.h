@@ -12,12 +12,13 @@
 #include <cstddef>  // for size_t
 #include <initializer_list>
 #include <iostream>
+#include <memory>
+#include "autograd.h"
+#include "autograd.h"
 
 class Tensor {
 public:
     // === Constructors ===
-
-    // Constructor: Create a tensor with a given shape (e.g., Tensor({2, 3}))
     Tensor(const std::vector<size_t>& shape_)
         : shape(shape_)
     {
@@ -35,6 +36,12 @@ public:
     Tensor(std::initializer_list<float> values)
         : data(values), shape{values.size()} {
         compute_strides();
+    }
+
+    // Scalar tensor with requires_grad support (e.g., Tensor({1.0f}, true))
+    Tensor(std::initializer_list<float> values, bool requires_grad_)
+    : data(values), shape{values.size()}, requires_grad(requires_grad_) {
+    compute_strides();
     }
 
 
@@ -79,11 +86,29 @@ public:
     const std::vector<size_t>& get_shape() const { return shape; }
     const std::vector<size_t>& get_strides() const { return strides; }
 
-// Optional: single value
+    // Optional: single value
     size_t size() const { return data.size(); }
 
+
+
+    // Auto grad
+    void backward(const Tensor& grad_output) const;
+    void backward() const;
+
+
+    bool requires_grad = false;
+
+    std::shared_ptr<Function> grad_fn = nullptr;
+    mutable std::shared_ptr<Tensor> grad = nullptr;
+
+
+
+    const Tensor& get_grad() const {
+        if (!grad) throw std::runtime_error("Gradient not computed yet.");
+        return *grad;
+    }
+
 private:
-    // === Helpers ===
 
     // Calculate strides based on shape
     void compute_strides();
@@ -98,6 +123,10 @@ private:
     std::vector<float> data;          // Flat storage of values
     std::vector<size_t> shape;        // Shape of tensor (e.g., {2, 3} for 2x3)
     std::vector<size_t> strides;      // Strides to map multi-index → flat index
+
+    // Store pointers to inputs for gradient propagation
+    std::vector<const Tensor*> _inputs;
+
 };
 
 #endif //TENSOR_LITE__TENSOR_H
